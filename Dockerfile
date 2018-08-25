@@ -6,14 +6,13 @@ COPY controllers/ /notesapp/controllers/
 COPY db/ /notesapp/db/
 COPY routes/ /notesapp/routes/
 COPY models/ /notesapp/models/
-COPY tests/ notesapp/tests/
 COPY app.js server.js /notesapp/
 COPY jwtRS256.pub.key package.json package-lock.json /notesapp/
 
 
 WORKDIR /notesapp
 
-ENV PORT="3000"
+# ENV PORT="3000"
 # ENV REST_LISTEN="0.0.0.0"
 
 RUN apt-get update -y  \
@@ -22,4 +21,3 @@ RUN apt-get update -y  \
 
 EXPOSE 3000
 CMD npm run docker
-
