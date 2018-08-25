@@ -29,6 +29,3 @@ services:
 networks:
   frontnet:
     driver: bridge
-
-volumes:
-  postgres-userauth-db:
