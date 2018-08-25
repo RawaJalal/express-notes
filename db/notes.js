@@ -1,3 +1,5 @@
+const {NOTES_MODEL} = require('../config.js');
+
 var TheModule;
 
 const model = exports.model = async () => {

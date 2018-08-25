@@ -1,0 +1,1 @@
+exports.NOTES_MODEL = process.env.NOTES_MODEL || 'memory';

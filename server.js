@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+require('dotenv').config();
 
 const app = require('./app.js');
 const http = require('http');
