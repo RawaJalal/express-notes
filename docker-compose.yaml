@@ -1,0 +1,31 @@
+version: "3"
+services:
+  notes:
+    build: ../notes
+    container_name: notes
+    depends_on:
+      - userauth
+    networks:
+      - frontnet
+    ports:
+    - "3000:3000"
+    restart: always
+    volumes:
+      - ./:/notesapp
+  db-notes:
+    image: "bitnami/mongodb:4.0"
+    container_name: db-notes
+    networks:
+      - frontnet
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongo:/bitnami
+    environment:
+      - MONGODB_USERNAME=admin
+      - MONGODB_PASSWORD=password123
+      - MONGODB_DATABASE=notes
+    
+networks:
+  frontnet:
+    driver: bridge

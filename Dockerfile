@@ -1,13 +1,7 @@
 FROM node:9.5
 
 RUN mkdir -p /notesapp
-COPY authorization/ /notesapp/authorization
-COPY controllers/ /notesapp/controllers/
-COPY db/ /notesapp/db/
-COPY routes/ /notesapp/routes/
-COPY models/ /notesapp/models/
-COPY app.js server.js /notesapp/
-COPY jwtRS256.pub.key package.json package-lock.json /notesapp/
+COPY . ./notesapp
 
 
 WORKDIR /notesapp
@@ -20,4 +14,4 @@ RUN apt-get update -y  \
     && npm install --unsafe-perm 
 
 EXPOSE 3000
-CMD npm run docker
+CMD npm start

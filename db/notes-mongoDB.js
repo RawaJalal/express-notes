@@ -1,8 +1,6 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-const connectionString = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@db-notes:27017/`;
-console.log(process.env.MONGODB_USERNAME);
-
+const connectionString = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_SERVICE || 'db-notes:27017'}/`;
 
 let client;
 const NOTES = 'notes';

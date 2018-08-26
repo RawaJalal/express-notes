@@ -3,7 +3,6 @@ const notes = require('../db/notes.js');
 
 
 exports.getNoteById = async (req, res, next) => {
-    console.log(req.payload);
     if (req.params.key) {
         try {
             const note = await notes.read(req.params.key);
