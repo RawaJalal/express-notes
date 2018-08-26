@@ -1,16 +1,24 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-const connectionString = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_SERVICE || 'db-notes:27017'}/`;
 
 let client;
 const NOTES = 'notes';
 
 async function connectDB() {
-    if (!client) client = await MongoClient.connect(connectionString);
-    return {
-        db: client.db(process.env.MONGODB_DATABASE),
-        client: client
-    };
+    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'staging') {
+        const connectionString = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@db-notes:27017/`;
+        if (!client) client = await MongoClient.connect(connectionString);
+        return {
+            db: client.db(process.env.MONGODB_DATABASE),
+            client: client
+        };
+    } else if (process.env.NODE_ENV === 'production') {
+        if (!client) client = await MongoClient.connect(process.env.MONGODB_URI);
+        return {
+            db : client,
+            client: client
+        }
+    }
 }
 
 exports.create = async (key, title, body) => {
